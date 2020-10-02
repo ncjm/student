@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.InstanceInfoMapper">
+    
+    <resultMap type="InstanceInfo" id="InstanceInfoResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="corpId"    column="corp_id"    />
+        <result property="originatorUserId"    column="originator_user_id"    />
+        <result property="originatorDeptId"    column="originator_dept_id"    />
+        <result property="stateType"    column="state_type"    />
+        <result property="status"    column="status"    />
+        <result property="tasksUser"    column="tasks_user"    />
+        <result property="patrolDate"    column="patrol_date"    />
+        <result property="patrolDept"    column="patrol_dept"    />
+        <result property="patrolUser"    column="patrol_user"    />
+        <result property="patrolRoad"    column="patrol_road"    />
+        <result property="description"    column="description"    />
+        <result property="txsm"    column="txsm"    />
+        <result property="remake"    column="remake"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="imgUrl"    column="img_url"    />
+        <result property="originatorUser"    column="originator_user"    />
+        <result property="originatorDept"    column="originator_dept"    />
+    </resultMap>
+
+    <sql id="selectInstanceInfoVo">
+        select id, title, corp_id, originator_user_id, originator_dept_id, state_type, status, tasks_user, patrol_date, patrol_dept, patrol_user, patrol_road, description, txsm, remake, create_date, img_url, originator_user, originator_dept from instance_info
+    </sql>
+
+    <select id="selectInstanceInfoList" parameterType="InstanceInfo" resultMap="InstanceInfoResult">
+        <include refid="selectInstanceInfoVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+            <if test="corpId != null  and corpId != ''"> and corp_id = #{corpId}</if>
+            <if test="originatorUserId != null  and originatorUserId != ''"> and originator_user_id = #{originatorUserId}</if>
+            <if test="originatorDeptId != null  and originatorDeptId != ''"> and originator_dept_id = #{originatorDeptId}</if>
+            <if test="stateType != null "> and state_type = #{stateType}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="tasksUser != null  and tasksUser != ''"> and tasks_user = #{tasksUser}</if>
+            <if test="patrolDate != null  and patrolDate != ''"> and patrol_date = #{patrolDate}</if>
+            <if test="patrolDept != null  and patrolDept != ''"> and patrol_dept = #{patrolDept}</if>
+            <if test="patrolUser != null  and patrolUser != ''"> and patrol_user = #{patrolUser}</if>
+            <if test="patrolRoad != null  and patrolRoad != ''"> and patrol_road = #{patrolRoad}</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="txsm != null  and txsm != ''"> and txsm = #{txsm}</if>
+            <if test="remake != null  and remake != ''"> and remake = #{remake}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="imgUrl != null  and imgUrl != ''"> and img_url = #{imgUrl}</if>
+            <if test="originatorUser != null  and originatorUser != ''"> and originator_user = #{originatorUser}</if>
+            <if test="originatorDept != null  and originatorDept != ''"> and originator_dept = #{originatorDept}</if>
+        </where>
+    </select>
+    
+    <select id="selectInstanceInfoById" parameterType="String" resultMap="InstanceInfoResult">
+        <include refid="selectInstanceInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertInstanceInfo" parameterType="InstanceInfo">
+        insert into instance_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="title != null">title,</if>
+            <if test="corpId != null">corp_id,</if>
+            <if test="originatorUserId != null">originator_user_id,</if>
+            <if test="originatorDeptId != null">originator_dept_id,</if>
+            <if test="stateType != null">state_type,</if>
+            <if test="status != null">status,</if>
+            <if test="tasksUser != null">tasks_user,</if>
+            <if test="patrolDate != null">patrol_date,</if>
+            <if test="patrolDept != null">patrol_dept,</if>
+            <if test="patrolUser != null">patrol_user,</if>
+            <if test="patrolRoad != null">patrol_road,</if>
+            <if test="description != null">description,</if>
+            <if test="txsm != null">txsm,</if>
+            <if test="remake != null">remake,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="imgUrl != null">img_url,</if>
+            <if test="originatorUser != null">originator_user,</if>
+            <if test="originatorDept != null">originator_dept,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="title != null">#{title},</if>
+            <if test="corpId != null">#{corpId},</if>
+            <if test="originatorUserId != null">#{originatorUserId},</if>
+            <if test="originatorDeptId != null">#{originatorDeptId},</if>
+            <if test="stateType != null">#{stateType},</if>
+            <if test="status != null">#{status},</if>
+            <if test="tasksUser != null">#{tasksUser},</if>
+            <if test="patrolDate != null">#{patrolDate},</if>
+            <if test="patrolDept != null">#{patrolDept},</if>
+            <if test="patrolUser != null">#{patrolUser},</if>
+            <if test="patrolRoad != null">#{patrolRoad},</if>
+            <if test="description != null">#{description},</if>
+            <if test="txsm != null">#{txsm},</if>
+            <if test="remake != null">#{remake},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="imgUrl != null">#{imgUrl},</if>
+            <if test="originatorUser != null">#{originatorUser},</if>
+            <if test="originatorDept != null">#{originatorDept},</if>
+         </trim>
+    </insert>
+
+    <update id="updateInstanceInfo" parameterType="InstanceInfo">
+        update instance_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null">title = #{title},</if>
+            <if test="corpId != null">corp_id = #{corpId},</if>
+            <if test="originatorUserId != null">originator_user_id = #{originatorUserId},</if>
+            <if test="originatorDeptId != null">originator_dept_id = #{originatorDeptId},</if>
+            <if test="stateType != null">state_type = #{stateType},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="tasksUser != null">tasks_user = #{tasksUser},</if>
+            <if test="patrolDate != null">patrol_date = #{patrolDate},</if>
+            <if test="patrolDept != null">patrol_dept = #{patrolDept},</if>
+            <if test="patrolUser != null">patrol_user = #{patrolUser},</if>
+            <if test="patrolRoad != null">patrol_road = #{patrolRoad},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="txsm != null">txsm = #{txsm},</if>
+            <if test="remake != null">remake = #{remake},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="imgUrl != null">img_url = #{imgUrl},</if>
+            <if test="originatorUser != null">originator_user = #{originatorUser},</if>
+            <if test="originatorDept != null">originator_dept = #{originatorDept},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteInstanceInfoById" parameterType="String">
+        delete from instance_info where id = #{id}
+    </delete>
+
+    <delete id="deleteInstanceInfoByIds" parameterType="String">
+        delete from instance_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
